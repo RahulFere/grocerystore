@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+
+<h2 class="text-center mb-4">Browse Categories</h2>
+
+<!-- Categories buttons -->
+<div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+    {% for category in categories %}
+        <a href="{% url 'products_by_category' category.id %}" class="btn btn-outline-success">
+            {{ category.name }}
+        </a>
+    {% endfor %}
+</div>
+
+<!-- Trending/default category products -->
+<h3 class="text-center mb-4">Trending in {{ default_category.name }}</h3>
+<div class="row justify-content-center">
+    {% for product in default_products %}
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

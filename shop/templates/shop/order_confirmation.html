@@ -1,0 +1,22 @@
+
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <div class="card border-success">
+        <div class="card-header bg-success text-white">
+            <h2>Order Confirmed!</h2>
+        </div>
+        <div class="card-body">
+            <i class="fas fa-check-circle text-success fa-5x mb-4"></i>
+            <h3 class="card-title">Thank you for your order!</h3>
+            <p class="card-text">Your order #{{ order.id }} has been placed successfully.</p>
+            <p class="card-text">Estimated delivery time: {{ order.delivery_time }}</p>
+            <p class="card-text">We'll deliver your groceries to:</p>
+            <p class="card-text"><strong>{{ order.delivery_address }}</strong></p>
+            <a href="{% url 'home' %}" class="btn btn-success mt-3">Continue Shopping</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
