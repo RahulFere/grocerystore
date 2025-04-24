@@ -2,4 +2,4 @@ Django>=4.2
 gunicorn
 whitenoise
 pillow
-jazzmin
+jazzmin==2.6.0
