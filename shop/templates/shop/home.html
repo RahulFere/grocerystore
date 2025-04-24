@@ -2,44 +2,134 @@
 {% load static %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section" style="background-image: url('{% static 'shop/images/hero-bg.jpg' %}'); background-size: cover; background-position: center; height: 70vh; display: flex; justify-content: center; align-items: center;">
-    <div class="hero-overlay" style="background-color: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; position: absolute;"></div>
-    <div class="container text-center text-white position-relative">
-        <div class="hero-content">
-            <h1 class="display-4 font-weight-bold text-shadow">Welcome to Rahul Kirana Store</h1>
-            <p class="lead mb-4 text-shadow">Your one-stop shop for fresh groceries delivered to your doorstep</p>
-            <a href="#products" class="btn btn-light btn-lg shadow-lg">Shop Now</a>
-        </div>
+<!-- Existing Hero and Products Sections -->
+<section class="hero-section position-relative" style="
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url('{% static 'shop/images/hero-bg.jpg' %}');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+">
+  <div class="container h-100 d-flex align-items-center">
+    <div class="text-white text-center">
+      <h1 class="display-4 fw-bold mb-3">Welcome to Rahul Kirana Store</h1>
+      <p class="lead mb-4">Your one-stop shop for fresh groceries delivered to your doorstep</p>
+      <a href="#products" class="btn btn-light btn-lg px-4">Shop Now</a>
     </div>
+  </div>
 </section>
 
-<!-- Featured Products Section -->
 <section id="products" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5 font-weight-bold">Featured Products</h2>
-        <div class="row">
-            {% for product in products %}
-            <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <!-- Product Image -->
-                    <img src="{{ product.image.url }}" class="card-img-top img-fluid rounded-top" alt="{{ product.name }}" style="object-fit: cover; height: 200px;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title font-weight-bold">{{ product.name }}</h5>
-                        <p class="card-text text-muted">{{ product.description|truncatewords:10 }}</p>
-                        <p class="card-text font-weight-bold text-success">${{ product.price }}</p>
-                        <div class="mt-auto">
-                            {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success btn-sm w-100">Add to Cart</a>
-                            {% else %}
-                            <a href="{% url 'login' %}" class="btn btn-outline-success btn-sm w-100">Login to Purchase</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">Featured Products</h2>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+      {% for product in products %}
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+          <div style="height: 150px; overflow: hidden;">
+            <img src="{{ product.image.url }}" class="card-img-top h-100 w-100 object-fit-cover" alt="{{ product.name }}">
+          </div>
+          <div class="card-body d-flex flex-column p-3" style="min-height: 180px;">
+            <h5 class="card-title fw-bold mb-2 text-truncate" title="{{ product.name }}">{{ product.name }}</h5>
+            <div class="card-text text-muted small mb-2" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 2.8em;">
+              {{ product.description }}
             </div>
-            {% endfor %}
+            <p class="fw-bold text-success mb-2">${{ product.price }}</p>
+            <div class="mt-auto pt-2">
+              {% if user.is_authenticated %}
+                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success btn-sm w-100">
+                  <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                </a>
+              {% else %}
+                <a href="{% url 'login' %}" class="btn btn-outline-success btn-sm w-100">
+                  Login to Purchase
+                </a>
+              {% endif %}
+            </div>
+          </div>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
+
+<!-- NEW: Why Shop With Us -->
+<section class="py-5 bg-white">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Why Shop With Us</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <i class="fas fa-truck fa-2x text-success mb-3"></i>
+        <h5>Fast Delivery</h5>
+        <p class="text-muted">We ensure speedy and timely delivery at your doorstep.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-leaf fa-2x text-success mb-3"></i>
+        <h5>Fresh Products</h5>
+        <p class="text-muted">Our groceries are fresh and of the highest quality.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-wallet fa-2x text-success mb-3"></i>
+        <h5>Best Prices</h5>
+        <p class="text-muted">Great value with everyday low prices and offers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: Testimonials Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">What Our Customers Say</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <blockquote class="blockquote text-center">
+          <p class="mb-0">"Super fresh vegetables and timely delivery. I highly recommend it!"</p>
+          <footer class="blockquote-footer mt-2">Priya Sharma</footer>
+        </blockquote>
+      </div>
+      <div class="col-md-4">
+        <blockquote class="blockquote text-center">
+          <p class="mb-0">"Reliable service, great prices, and top-notch support. Love it!"</p>
+          <footer class="blockquote-footer mt-2">Arjun Verma</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: Newsletter Signup -->
+<section class="py-5 bg-success text-white">
+  <div class="container text-center">
+    <h3 class="fw-bold mb-3">Stay Updated!</h3>
+    <p class="mb-4">Subscribe to our newsletter for the latest deals and product launches.</p>
+    <form class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <input type="email" class="form-control form-control-lg mb-2" placeholder="Enter your email">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-light btn-lg">Subscribe</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    background-attachment: fixed;
+  }
+
+  .object-fit-cover {
+    object-fit: cover;
+  }
+
+  .card {
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+</style>
 {% endblock %}

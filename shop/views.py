@@ -160,3 +160,8 @@ def products_by_category(request, category_id):
         'products': products,
         'categories': categories
     })
+def about(request):
+    return render(request, 'shop/about.html')
+
+def contact(request):
+    return render(request, 'shop/contact.html')

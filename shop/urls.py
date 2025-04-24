@@ -20,5 +20,8 @@ urlpatterns = [
     path('category/<int:category_id>/', views.products_by_category, name='products_by_category'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
+
 ]
 

@@ -1,36 +1,84 @@
 {% extends 'shop/base.html' %}
-{% block content %}
+{% load static %}
 
-<h2 class="text-center mb-4">Browse Categories</h2>
+{% block content %}
+<!-- Categories Header -->
+<h2 class="text-center mb-4 fw-bold">Browse Categories</h2>
 
 <!-- Categories buttons -->
-<div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
+<div class="d-flex flex-wrap justify-content-center gap-3 mb-5 px-2">
     {% for category in categories %}
-        <a href="{% url 'products_by_category' category.id %}" class="btn btn-outline-success">
+        <a href="{% url 'products_by_category' category.id %}" 
+           class="btn btn-outline-success px-4 py-2 rounded-pill text-nowrap">
             {{ category.name }}
         </a>
     {% endfor %}
 </div>
 
-<!-- Trending/default category products -->
-<h3 class="text-center mb-4">Trending in {{ default_category.name }}</h3>
-<div class="row justify-content-center">
-    {% for product in default_products %}
-    <div class="col-6 col-md-2 mb-4">
-
-            <div class="card h-100">
-                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">${{ product.price }}</p>
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
-                    </form>
+<!-- Trending Products Section -->
+<div class="container">
+    <h3 class="text-center mb-4 fw-bold">Trending in {{ default_category.name }}</h3>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+        {% for product in default_products %}
+        <div class="col">
+            <div class="card h-100 border-0 shadow-sm">
+                <!-- Product Image -->
+                <div style="height: 150px; overflow: hidden;">
+                    <img src="{{ product.image.url }}" 
+                         class="card-img-top h-100 w-100 object-fit-cover" 
+                         alt="{{ product.name }}">
+                </div>
+                
+                <!-- Card Body - FIXED DESCRIPTION VISIBILITY -->
+                <div class="card-body d-flex flex-column p-3" style="min-height: 200px;">
+                    <!-- Product Name -->
+                    <h5 class="card-title fw-bold mb-2 text-truncate" title="{{ product.name }}">
+                        {{ product.name }}
+                    </h5>
+                    
+                    <!-- Product Description (NOW GUARANTEED VISIBLE) -->
+                    <div class="card-text text-muted small mb-2" 
+                         style="flex: 1; overflow: auto; max-height: 60px;">
+                        {{ product.description }}
+                    </div>
+                    
+                    <!-- Price -->
+                    <p class="fw-bold text-success mb-2">${{ product.price }}</p>
+                    
+                    <!-- Add to Cart Button -->
+                    <div class="mt-auto">
+                        <form method="post" action="{% url 'add_to_cart' product.id %}" class="w-100">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm w-100">
+                                <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
+<style>
+    /* Guaranteed Visible Description Styles */
+    .card-text {
+        display: block !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+    }
+    
+    .object-fit-cover {
+        object-fit: cover;
+    }
+    
+    .card {
+        transition: transform 0.2s;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>
 {% endblock %}
