@@ -13,7 +13,6 @@ urlpatterns = [
     path('orders/', views.order_history, name='order_history'),
     path('register/', views.register, name='register'),
     
-    # Authentication URLs
     path('accounts/login/', auth_views.LoginView.as_view(template_name='shop/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='home'), name='logged_out'),
     path('categories/', views.categories_view, name='categories'),

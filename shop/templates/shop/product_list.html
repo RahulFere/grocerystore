@@ -27,7 +27,7 @@
                             {{ product.description }}
                         </div>
                         
-                        <!-- Add to Cart Button WITH ICON -->
+                        
                         <div class="mt-auto">
                             {% if user.is_authenticated %}
                             <form method="post" action="{% url 'add_to_cart' product.id %}">
