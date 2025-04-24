@@ -16,7 +16,8 @@
 <h3 class="text-center mb-4">Trending in {{ default_category.name }}</h3>
 <div class="row justify-content-center">
     {% for product in default_products %}
-        <div class="col-md-3 col-sm-6 mb-4">
+    <div class="col-6 col-md-2 mb-4">
+
             <div class="card h-100">
                 <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                 <div class="card-body">

@@ -5,16 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreshMart - Online Grocery Delivery</title>
+    <title>Rahul Kirana Store - Online Grocery Delivery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
 </head>
 
 <body>
+    <!-- Navbar Section -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">FreshMart</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Rahul Kirana Store</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,7 +27,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'categories' %}">Categories</a>
                     </li>
-
                 </ul>
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
@@ -47,13 +47,11 @@
                     <li class="nav-item">
                         <form method="post" action="{% url 'logout' %}" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="nav-link btn btn-link text-white p-0"
-                                style="text-decoration: none;">
+                            <button type="submit" class="nav-link btn btn-link text-white p-0" style="text-decoration: none;">
                                 Logout
                             </button>
                         </form>
                     </li>
-
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -67,6 +65,7 @@
         </div>
     </nav>
 
+    <!-- Message Section -->
     <div class="container mt-3">
         {% if messages %}
         {% for message in messages %}
@@ -78,17 +77,20 @@
         {% endif %}
     </div>
 
+    <!-- Main Content Section -->
     <main class="container my-4">
         {% block content %}
         {% endblock %}
     </main>
 
+    <!-- Footer Section -->
     <footer class="bg-dark text-white py-4 mt-5">
         <div class="container text-center">
-            <p>&copy; 2023 FreshMart Online Grocery. All rights reserved.</p>
+            <p>&copy; 2023 Rahul Kirana Store. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

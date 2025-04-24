@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block content %}
-<section class="py-5">
+<!-- Category Products Section -->
+<section class="category-products py-5">
     <div class="container">
-        <h2 class="text-center mb-5">{{ category.name|default:"All Products" }}</h2>
+        <h2 class="text-center mb-5">{{ category.name }} Products</h2>
         <div class="row">
             {% for product in products %}
             <div class="col-6 col-md-2 mb-4">
-
                 <div class="card h-100">
                     <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                     <div class="card-body">
@@ -18,14 +18,9 @@
                     </div>
                     <div class="card-footer bg-white">
                         {% if user.is_authenticated %}
-                        <form method="post" action="{% url 'add_to_cart' product.id %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ request.path }}">
-                            <button type="submit" class="btn btn-success btn-sm">Add to Cart</button>
-                        </form>
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success btn-sm">Add to Cart</a>
                         {% else %}
-                        <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-outline-success btn-sm">Login
-                            to Purchase</a>
+                        <a href="{% url 'login' %}" class="btn btn-outline-success btn-sm">Login to Purchase</a>
                         {% endif %}
                     </div>
                 </div>

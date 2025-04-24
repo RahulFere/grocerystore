@@ -70,3 +70,19 @@ body {
         margin-bottom: 20px;
     }
 }
+
+.card-img-top {
+    object-fit: cover; /* Keeps the image's aspect ratio intact */
+    height: 200px;     /* Fixed height to keep consistency */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Spacing between content */
+}
+
+.card-body {
+    height: 100px; /* Adjust the body height */
+}
+
