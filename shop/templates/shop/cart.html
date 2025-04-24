@@ -19,7 +19,7 @@
                 {% for item in cart_items %}
                 <tr>
                     <td>{{ item.product.name }}</td>
-                    <td>${{ item.product.price }}</td>
+                    <td>Rs.{{ item.product.price }}</td>
                     <td>
                         <a href="{% url 'add_to_cart' item.product.id %}?action=decrease&next={% url 'cart' %}" class="btn btn-sm btn-warning">-</a>
                         {{ item.quantity }}
@@ -35,7 +35,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3" class="text-end"><strong>Total:</strong></td>
-                    <td colspan="2"><strong>${{ total|floatformat:2 }}</strong></td>
+                    <td colspan="2"><strong>Rs.{{ total|floatformat:2 }}</strong></td>
                 </tr>
             </tfoot>
         </table>

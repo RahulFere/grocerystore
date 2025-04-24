@@ -30,12 +30,12 @@
                         {% for item in cart_items %}
                         <li class="list-group-item d-flex justify-content-between">
                             <span>{{ item.product.name }} ({{ item.quantity }})</span>
-                            <span>${{ item.product.price|floatformat:2 }}</span>
+                            <span>Rs.{{ item.product.price|floatformat:2 }}</span>
                         </li>
                         {% endfor %}
                         <li class="list-group-item d-flex justify-content-between fw-bold">
                             <span>Total</span>
-                            <span>${{ total|floatformat:2 }}</span>
+                            <span>Rs.{{ total|floatformat:2 }}</span>
                         </li>
                     </ul>
                 </div>
