@@ -1,22 +1,52 @@
 {% extends "shop/base.html" %}
+{% load static %}
+
 {% block content %}
+
+
+
 <div class="container py-5">
     <h2 class="text-center mb-4 fw-bold">About Us</h2>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <p class="lead">
+                <i class="bi bi-bag-heart-fill text-success"></i>
                 Welcome to <strong>Rahul Kirana Store</strong> – your trusted online grocery destination. 
                 We provide fresh fruits, vegetables, grains, and household essentials right at your doorstep.
             </p>
             <p>
+                <i class="bi bi-clock-history text-primary"></i>
                 Founded with the mission to simplify grocery shopping, we ensure high-quality products, 
                 timely delivery, and unbeatable prices. Whether you're planning your weekly groceries or a quick top-up, 
                 we’ve got you covered.
             </p>
             <p>
+                <i class="bi bi-emoji-smile-fill text-warning"></i>
                 Thank you for choosing us. We’re proud to serve your family!
             </p>
         </div>
     </div>
 </div>
+
+<div class="container py-4">
+    <h3 class="text-center mb-4">Why Shop With Us?</h3>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'shop/images/fresh-products.jpg' %}" class="rounded-circle mb-3" style="width:100px;" alt="Fresh Products">
+            <h5>Fresh Products</h5>
+            <p>We deliver farm-fresh fruits and vegetables every day.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'shop/images/fast-delivery.jpg' %}" class="rounded-circle mb-3" style="width:100px;" alt="Fast Delivery">
+            <h5>Fast Delivery</h5>
+            <p>Guaranteed same-day delivery in your area.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'shop/images/best-prices.jpg' %}" class="rounded-circle mb-3" style="width:100px;" alt="Best Prices">
+            <h5>Best Prices</h5>
+            <p>We offer unbeatable prices on all essentials.</p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
