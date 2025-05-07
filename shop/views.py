@@ -97,7 +97,7 @@ def checkout(request):
             user=request.user,
             delivery_address=delivery_address,
             delivery_time=f"{random.randint(10, 30)} minutes",
-            total_amount=total  # Add this line to store the total
+            total_amount=total 
         )
         
         # Add all cart items to order
@@ -115,7 +115,7 @@ def checkout(request):
     
     return render(request, 'shop/checkout.html', {
         'cart_items': cart_items,
-        'total': total  # Pass the total to template
+        'total': total  
     })
 
 @login_required
@@ -142,8 +142,8 @@ def register(request):
     return render(request, 'shop/register.html', {'form': form})
 def categories_view(request):
     categories = Category.objects.all()
-    default_category = Category.objects.first()  # or get a 'Trending' category
-    default_products = Product.objects.filter(category=default_category)[:8]  # show top 8
+    default_category = Category.objects.first() 
+    default_products = Product.objects.filter(category=default_category)[:8]  
     return render(request, 'shop/categories.html', {
         'categories': categories,
         'default_products': default_products,
@@ -154,7 +154,7 @@ def categories_view(request):
 def products_by_category(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     products = Product.objects.filter(category=category)
-    categories = Category.objects.all()  # for the second navbar
+    categories = Category.objects.all()  
     return render(request, 'shop/category_products.html', {
         'selected_category': category,
         'products': products,

@@ -25,7 +25,7 @@
                         {{ item.quantity }}
                         <a href="{% url 'add_to_cart' item.product.id %}?action=increase&next={% url 'cart' %}" class="btn btn-sm btn-success">+</a>
                     </td>
-                    <td>${{ item.product.price|floatformat:2 }}</td>
+                    <td>Rs.{{ item.product.price|floatformat:2 }}</td>
                     <td>
                         <a href="{% url 'add_to_cart' item.product.id %}?action=remove&next={% url 'cart' %}" class="btn btn-sm btn-danger">Remove</a>
                     </td>
